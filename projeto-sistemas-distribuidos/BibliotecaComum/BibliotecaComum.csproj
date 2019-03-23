@@ -42,8 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="conexao\Conexao.cs" />
-    <Compile Include="Principal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="usuario\Usuario.cs" />
+    <Compile Include="usuario\UsuarioDados.cs" />
+    <Compile Include="usuario\UsuarioInterface.cs" />
+    <Compile Include="usuario\UsuarioNegocio.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
