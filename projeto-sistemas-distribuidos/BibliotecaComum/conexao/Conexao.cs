@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaComum.conexao
 {
-    class Conexao
+   public  class Conexao
     {
         #region declaração de variáveis
         private const string local = "DESKTOP-MHIT88S\\SQLEXPRESS";
