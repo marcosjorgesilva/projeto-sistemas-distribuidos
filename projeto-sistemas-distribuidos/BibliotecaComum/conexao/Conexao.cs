@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaComum.conexao
 {
-   public  class Conexao
+    public class Conexao
     {
         #region declaração de variáveis
         private const string local = "localhost";
