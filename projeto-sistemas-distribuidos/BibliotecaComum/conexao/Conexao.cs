@@ -10,7 +10,7 @@ namespace BibliotecaComum.conexao
     public class Conexao
     {
         #region declaração de variáveis
-        private const string local = "DESKTOP-MHIT88S\\SQLEXPRESS";
+        private const string local = "localhost";
         private const string bancoDeDados = "MELOCHICOUT";
         private const string usuario = "melochicout";
         private const string senha = "123";
