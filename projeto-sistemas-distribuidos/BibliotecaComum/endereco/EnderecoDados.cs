@@ -42,7 +42,7 @@ namespace BibliotecaComum.endereco
 
                 SqlCommand cmd = new SqlCommand(sqlQuery, this.sqlConnection);
 
-                cmd.Parameters.Add("@idEnderecof", SqlDbType.VarChar);
+                cmd.Parameters.Add("@idEndereco", SqlDbType.VarChar);
                 cmd.Parameters["@idEndereco"].Value = endereco.IdEndereco;
 
                 cmd.ExecuteNonQuery();
