@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BibliotecaComum.conexao;
 
 namespace BibliotecaComum.endereco
 {
     public class EnderecoDados : Conexao, EnderecoInterface
     {
-        public void Create(Endereco endereco)
+        public void CreateEndereco(Endereco endereco)
         {
             this.abrirConexao();
             string sqlQuery = "INSERT INTO endereco (idEndereco, usuario, logradouro, numero ,bairro, cep, complemento ,referencia) ";
@@ -31,7 +28,7 @@ namespace BibliotecaComum.endereco
         }
 
       
-        public void Remove(Endereco endereco)
+        public void RemoveEndereco(Endereco endereco)
         {
             // lógica que acessa a base de dados e realiza instrução DELETE baseado no idEndereco do usuário
             try
@@ -58,11 +55,11 @@ namespace BibliotecaComum.endereco
             throw new NotImplementedException();
         }
 
-        public void Update(Endereco endereco)
+        public void UpdateEndereco(Endereco endereco)
         {
             this.abrirConexao();
             string sqlQuery = "UPADATE endereco";
-            sqlQuery += "SET logradouro=@logradouro, numero=@numero, bairro=@bairro, cep=@cep, complemento=@complemento, referencia=@referencia ";
+            sqlQuery += "SET logradouro = @logradouro, numero = @numero, bairro = @bairro, cep = @cep, complemento = @complemento, referencia = @referencia ";
 
 
 
@@ -73,7 +70,7 @@ namespace BibliotecaComum.endereco
             throw new NotImplementedException();
         }
 
-        public List<Endereco> Detail(Endereco endereco)
+        public List<Endereco> DetailEndereco(Endereco endereco)
         {
             throw new NotImplementedException();
 
