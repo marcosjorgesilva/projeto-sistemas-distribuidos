@@ -51,27 +51,20 @@ namespace BibliotecaComum.usuario
         public void RemoveUsuario(Usuario usuario) // 100%
         {
             // lógica que acessa a base de dados e realiza instrução DELETE baseado no CPF do usuário
-            try
-            {
-                this.abrirConexao();
-                #region query SQL
-                string sqlQuery = "DELETE FROM usuario WHERE cpf = @cpf ";
+            this.abrirConexao();
+            #region query SQL
+            string sqlQuery = "DELETE FROM usuario WHERE cpf = @cpf ";
 
-                SqlCommand cmd = new SqlCommand(sqlQuery, this.sqlConnection);
+            SqlCommand cmd = new SqlCommand(sqlQuery, this.sqlConnection);
 
-                cmd.Parameters.Add("@cpf", SqlDbType.VarChar);
-                cmd.Parameters["@cpf"].Value = usuario.Cpf;
+            cmd.Parameters.Add("@cpf", SqlDbType.VarChar);
+            cmd.Parameters["@cpf"].Value = usuario.Cpf;
 
-                cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
 
-                cmd.Dispose();
-                #endregion
-                this.fecharConexao();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            cmd.Dispose();
+            #endregion
+            this.fecharConexao();
         }
 
         public void UpdateUsuario(Usuario usuario) // 50% falta definir o que pode ser editado e endreço
