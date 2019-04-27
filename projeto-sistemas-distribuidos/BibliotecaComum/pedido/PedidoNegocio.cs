@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,7 +48,7 @@ namespace BibliotecaComum.pedido
 
             if(dados.Select(p).Count > 0)
             {
-                throw new Exception("Matricula cadastrada");
+                throw new Exception("Pedido Cadastrado");
             }
             dados.Create(pedido);
         }
@@ -75,7 +75,7 @@ namespace BibliotecaComum.pedido
 
             if (dados.Select(p).Count > 0)
             {
-                throw new Exception("Matricula cadastrada");
+                throw new Exception("Pedido cadastrado");
             }
             dados.Update(pedido);
 
