@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using BibliotecaComum.conexao;
+using BibliotecaComum.endereco;
 
 namespace BibliotecaComum.usuario
 {
@@ -43,6 +43,14 @@ namespace BibliotecaComum.usuario
 
             // liberação de memória alocada para o objeto SqlCommand
             cmd.Dispose();
+
+            // lógica que executa a inserção do endereço desse cliente
+            /*
+             * 1 - checar se existe endereco 
+             * 2 - enviar endereço que vem no parametro de usuário para a classe responsável pelo cadastro
+             */
+
+            new EnderecoNegocio().CreateEndereco(usuario.Enderecos[0]);
 
             // fechamento de conexão com base de dados
             this.fecharConexao();

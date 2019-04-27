@@ -8,12 +8,12 @@ namespace BibliotecaComum.endereco
 {
     public class EnderecoDados : Conexao, EnderecoInterface
     {
-        public void CreateEndereco(Endereco endereco)
+        public void CreateEndereco(Endereco endereco)  // logradouro, numero, bairro, cep, complemento, referencia
         {
             this.abrirConexao();
-            string sqlQuery = "INSERT INTO endereco (idEndereco, usuario, logradouro, numero ,bairro, cep, complemento ,referencia) ";
-            sqlQuery += "VALUES (@idEndereco, @usuario, @logradouro, @numero, @bairro, @cep, @complemento, @referencia)";
-
+            string sqlQuery = "INSERT INTO endereco logradouro, numero, bairro, cep, complemento, referencia) ";
+            sqlQuery += "VALUES (@logradouro, @numero, @bairro, @cep, @complemento, @referencia)";
+            
             SqlCommand cmd = new SqlCommand(sqlQuery, this.sqlConnection);
 
             // execução da query
@@ -24,7 +24,6 @@ namespace BibliotecaComum.endereco
 
             // fechamento de conexão com base de dados
             this.fecharConexao();
-
         }
 
       

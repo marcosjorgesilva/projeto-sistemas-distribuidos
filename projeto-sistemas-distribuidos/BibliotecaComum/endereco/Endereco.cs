@@ -15,9 +15,8 @@ namespace BibliotecaComum.endereco
 
         public Endereco() { }
 
-        public Endereco(int idEndereco, Usuario usuario, string logradouro, int numero, string bairro, string cep, string complemento, string referencia)
+        public Endereco(Usuario usuario, string logradouro, int numero, string bairro, string cep, string complemento, string referencia)
         {
-            IdEndereco = idEndereco;
             Usuario = usuario;
             Logradouro = logradouro;
             Numero = numero;

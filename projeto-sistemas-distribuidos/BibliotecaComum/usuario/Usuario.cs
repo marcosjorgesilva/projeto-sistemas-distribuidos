@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using BibliotecaComum.endereco;
 
 namespace BibliotecaComum.usuario
 {
@@ -14,9 +16,11 @@ namespace BibliotecaComum.usuario
         public DateTime DataNascimento { get; set; }
         public string TelefoneFixo { get; set; }
         public string TelefoneCelular { get; set; }
+        public List<Endereco> Enderecos { get; set; }
 
         public Usuario() { }
-        public Usuario(int idUsuario, string tipoUsuario, string nomeUsuario, string login, string senha, string cpf, string email, DateTime dataNascimento, string telefoneFixo, string telefoneCelular)
+
+        public Usuario(int idUsuario, string tipoUsuario, string nomeUsuario, string login, string senha, string cpf, string email, DateTime dataNascimento, string telefoneFixo, string telefoneCelular, Endereco endereco)
         {
             IdUsuario = idUsuario;
             TipoUsuario = tipoUsuario;
@@ -28,6 +32,8 @@ namespace BibliotecaComum.usuario
             DataNascimento = dataNascimento;
             TelefoneFixo = telefoneFixo;
             TelefoneCelular = telefoneCelular;
+            if (endereco != null)
+                Enderecos.Add(endereco);
         }
     }
 }
