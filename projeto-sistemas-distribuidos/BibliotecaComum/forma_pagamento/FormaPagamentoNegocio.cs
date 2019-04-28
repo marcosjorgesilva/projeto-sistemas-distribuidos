@@ -11,6 +11,7 @@ namespace BibliotecaComum.forma_pagamento
     public class FormaPagamentoNegocio : FormaPagamentoInterface
     {
         FormaPagamentoDados formaPagamentoDados = new FormaPagamentoDados();
+
         public void Delete(FormaPagamento formaPagamento)
         {
             formaPagamentoDados.Delete(formaPagamento);
@@ -18,8 +19,7 @@ namespace BibliotecaComum.forma_pagamento
 
         public void Insert(FormaPagamento formaPagamento)
         {
-            
-
+            formaPagamentoDados.Insert(formaPagamento);
         }
 
         public List<FormaPagamento> Select(FormaPagamento filtro)
@@ -30,8 +30,7 @@ namespace BibliotecaComum.forma_pagamento
 
         public void Update(FormaPagamento formaPagamento)
         {
-            
-
+            formaPagamentoDados.Update(formaPagamento);
         }
     }
 }

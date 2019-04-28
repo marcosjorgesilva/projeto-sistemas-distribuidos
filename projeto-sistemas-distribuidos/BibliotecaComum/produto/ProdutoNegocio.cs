@@ -10,22 +10,22 @@ namespace BibliotecaComum.produto
     {
         public void delete(Produto produto)
         {
-            throw new NotImplementedException();
+            new ProdutoDados().delete(produto);
         }
 
         public void insert(Produto produto)
         {
-            throw new NotImplementedException();
+            new ProdutoDados().insert(produto);
         }
 
         public List<Produto> list(Produto produto)
         {
-            throw new NotImplementedException();
+            return new ProdutoDados().list(produto);
         }
 
         public void update(Produto produto)
         {
-            throw new NotImplementedException();
+            new ProdutoDados().update(produto);
         }
     }
 }

@@ -4,7 +4,7 @@ using BibliotecaComum.forma_pagamento;
 
 namespace BibliotecaComum.pedido
 {
-    class Pedido
+    public class Pedido
     {
         private int idPedido;
         private string usuario;
