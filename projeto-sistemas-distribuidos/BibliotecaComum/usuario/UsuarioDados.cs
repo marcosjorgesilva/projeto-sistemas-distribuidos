@@ -50,7 +50,8 @@ namespace BibliotecaComum.usuario
              * 2 - enviar endereço que vem no parametro de usuário para a classe responsável pelo cadastro
              */
 
-            new EnderecoNegocio().CreateEndereco(usuario.Enderecos[0]);
+            foreach (Endereco end in usuario.Enderecos)
+                new EnderecoNegocio().CreateEndereco(end);
 
             // fechamento de conexão com base de dados
             this.fecharConexao();

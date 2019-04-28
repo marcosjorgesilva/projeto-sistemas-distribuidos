@@ -9,26 +9,26 @@ using System.Data.SqlClient;
 
 namespace BibliotecaComum.pedido
 {
-    public class PedidoDados : PedidoInterface, Conexao
+    public class PedidoDados : Conexao, PedidoInterface
     {
         #region Insert
 
         public void Create(Pedido pedido)
         {
             this.abrirConexao();
-            string sqlQuery = "INSERT INTO PEDIDO (idpedido, usuario, formapagamento, datapedido, dataentrega, valorpedido)";
-            sqlQuery += "VALUES (@idpedido, @usuario, @formapagamento, @datapedido, @dataentrega, @valorpedido)";
+            string sqlQuery = "INSERT INTO PEDIDO (idpedido, datapedido, dataentrega, valorpedido)";
+            sqlQuery += "VALUES (@idpedido, @datapedido, @dataentrega, @valorpedido)";
 
             SqlCommand cmd = new SqlCommand(sqlQuery, this.sqlConnection);
 
             cmd.Parameters.Add("@idPedido", SqlDbType.Int);
             cmd.Parameters["@idpedido"].Value = pedido.IdPedido;
 
-            cmd.Parameters.Add("@usuario", SqlDbType.Usuario);
-            cmd.Parameters["@usuario"].Value = pedido.Usuario;
+            //cmd.Parameters.Add("@usuario", SqlDbType.Usuario);
+            //cmd.Parameters["@usuario"].Value = pedido.Usuario;
 
-            cmd.Parameters.Add("@formapagamento", SqlDbType.FormaPagamento);
-            cmd.Parameters["@formapagamento"].Value = pedido.FormaPagamento;
+            //cmd.Parameters.Add("@formapagamento", SqlDbType.FormaPagamento);
+            //cmd.Parameters["@formapagamento"].Value = pedido.FormaPagamento;
 
             cmd.Parameters.Add("@datapedido", SqlDbType.DateTime);
             cmd.Parameters["@datapedido"].Value = pedido.DataPedido;
@@ -79,8 +79,8 @@ namespace BibliotecaComum.pedido
             cmd.Parameters.Add("@idPedido", SqlDbType.Int);
             cmd.Parameters["@idpedido"].Value = pedido.IdPedido;
 
-            cmd.Parameters.Add("@usuario", SqlDbType.Usuario);
-            cmd.Parameters["@usuario"].Value = pedido.Usuario;
+            //cmd.Parameters.Add("@usuario", SqlDbType.Usuario);
+            //cmd.Parameters["@usuario"].Value = pedido.Usuario;
 
             cmd.ExecuteNonQuery();
 
@@ -135,8 +135,9 @@ namespace BibliotecaComum.pedido
 
             cmd.Dispose();
 
-            this.fecharConexao();
+            return retorno;
 
+            this.fecharConexao();
         }
         #endregion
 
