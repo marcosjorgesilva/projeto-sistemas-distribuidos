@@ -21,14 +21,13 @@ namespace BibliotecaComum.categoria
          */
         public class CategoriaDados : Conexao, CategoriaInterface
         {
-        string query;
-        SqlCommand cmd = new SqlCommand();
+			string query;
 
         public void delete(Categoria categoria)
         {
             this.abrirConexao();
             query = "DELETE categoria WHERE ID_Categoria = @id_categoria ";
-            cmd = new SqlCommand(query, this.sqlConnection);
+            SqlCommand cmd = new SqlCommand(query, this.sqlConnection);
 
             cmd.Parameters.Add("@id_categoria", SqlDbType.Int);
             cmd.Parameters["@id_categoria"].Value = categoria.IdCategoria;
@@ -43,7 +42,7 @@ namespace BibliotecaComum.categoria
         {
             this.abrirConexao();
             query = "INSERT INTO categoria (Tipo_Categoria) VALUES (@tipo_categoria)";
-            cmd = new SqlCommand(query, this.sqlConnection);
+            SqlCommand cmd = new SqlCommand(query, this.sqlConnection);
 
             cmd.Parameters.Add("@tipo_categoria", SqlDbType.VarChar);
             cmd.Parameters["@tipo_categoria"].Value = categoria.TipoCategoria;
@@ -57,7 +56,7 @@ namespace BibliotecaComum.categoria
         public List<Categoria> list(Categoria categoria)
         {
             List<Categoria> retorno = new List<Categoria>();
-            cmd = new SqlCommand(query, this.sqlConnection);
+            SqlCommand cmd = new SqlCommand(query, this.sqlConnection);
             this.abrirConexao();
 
             query = "SELECT ID_Categoria, Tipo_Categoria ";
@@ -107,7 +106,7 @@ namespace BibliotecaComum.categoria
         {
             this.abrirConexao();
             query = "UPDATE categoria SET Tipo_Categoria = @tipo_categoria WHERE ID_Categoria = @id_categoria";
-            cmd = new SqlCommand(query,this.sqlConnection);
+            SqlCommand cmd = new SqlCommand(query,this.sqlConnection);
 
             cmd.Parameters.Add("@tipo_categoria", SqlDbType.VarChar);
             cmd.Parameters.Add("@id_categoria", SqlDbType.Int);
