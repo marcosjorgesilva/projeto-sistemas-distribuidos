@@ -16,8 +16,8 @@ namespace BibliotecaComum.forma_pagamento
         {
             //abrir a conexão
             this.abrirConexao();
-            string sql = "insert into formaPagamento(id_formaPagamento,descricao_fp,tipo_fp)";
-            sql += "values (@id_formaPagamento,@descricao_fp,@tipo_fp)";
+            string sql = "INSERT INTO formaPagamento(id_formaPagamento,descricao_fp,tipo_fp) ";
+            sql += "VALUES (@id_formaPagamento,@descricao_fp,@tipo_fp)";
             
             //instrução a ser executada
             SqlCommand cmd = new SqlCommand(sql,this.sqlConnection);
@@ -47,10 +47,10 @@ namespace BibliotecaComum.forma_pagamento
         {
             //abrir a conexão
             this.abrirConexao();
-            string sql = "update formaPagamento set ";
+            string sql = "UPDATE formaPagamento SET ";
             sql += "descricao_fp = @descricao_fp, ";
             sql += "tipo_fp = @tipo_fp ";
-            sql += "where id_formaPagamento = @id_formaPagamento ";
+            sql += "WHERE id_formaPagamento = @id_formaPagamento";
 
             //instrução a ser executada
             SqlCommand cmd = new SqlCommand(sql, this.sqlConnection);
@@ -80,8 +80,8 @@ namespace BibliotecaComum.forma_pagamento
         {
             //abrir a conexão
             this.abrirConexao();
-            string sql = "delete from formaPagamento";
-            sql += "where id_formaPagamento = @id_formaPagamento";
+            string sql = "DELET FROM formaPagamento ";
+            sql += "WHERE id_formaPagamento = @id_formaPagamento";
 
             //instrução a ser executada
             SqlCommand cmd = new SqlCommand(sql, this.sqlConnection);
@@ -106,8 +106,8 @@ namespace BibliotecaComum.forma_pagamento
             List<FormaPagamento> retorno = new List<FormaPagamento>();
             //abrir a conexão
             this.abrirConexao();
-            string sql = "SELECT @id_formaPagamento, @descricao_fp, @tipo_fp";
-            sql += "FROM formaPagamento";
+            string sql = "SELECT @id_formaPagamento, @descricao_fp, @tipo_fp ";
+            sql += "FROM formaPagamento ";
             sql += "WHERE id_formaPagamento = id_formaPagamento";
 
             SqlCommand cmd = new SqlCommand(sql, sqlConnection);
@@ -119,13 +119,13 @@ namespace BibliotecaComum.forma_pagamento
             }
 
             //se foi passada uma descrição válida, esta descrição entrará como critério de filtro
-            if (filtro.DescricaoFp != null && filtro.DescricaoFp.Trim().Equals("") == false)
+            if (String.IsNullOrEmpty(filtro.DescricaoFp) && String.IsNullOrWhiteSpace(filtro.DescricaoFp))
             {
                 sql += " and nome like @descricao_fp";
             }
 
             //se foi passado um tipo válido, este tipo entrará como critério de filtro
-            if (filtro.TipoFp != null && filtro.TipoFp.Trim().Equals("") == false)
+            if (String.IsNullOrEmpty(filtro.TipoFp) && String.IsNullOrWhiteSpace(filtro.TipoFp))
             {
                 sql += " and nome like @tipo_fp";
             }
@@ -138,14 +138,14 @@ namespace BibliotecaComum.forma_pagamento
             }
 
             //se foi passada uma descrição válida, esta descrição entrará como critério de filtro
-            if (filtro.DescricaoFp != null && filtro.DescricaoFp.Trim().Equals("") == false)
+            if (String.IsNullOrEmpty(filtro.DescricaoFp) && String.IsNullOrWhiteSpace(filtro.DescricaoFp))
             {
                 cmd.Parameters.Add("@descricao_fp", SqlDbType.VarChar);
                 cmd.Parameters["@descricao_fp"].Value = "%" + filtro.DescricaoFp + "%";
             }
 
             //se foi passado um tipo válido, este tipo entrará como critério de filtro
-            if (filtro.TipoFp != null && filtro.TipoFp.Trim().Equals("") == false)
+            if (String.IsNullOrEmpty(filtro.TipoFp) && String.IsNullOrWhiteSpace(filtro.TipoFp))
             {
                 cmd.Parameters.Add("@tipo_fp", SqlDbType.VarChar);
                 cmd.Parameters["@tipo_fp"].Value = "%" + filtro.TipoFp + "%";
