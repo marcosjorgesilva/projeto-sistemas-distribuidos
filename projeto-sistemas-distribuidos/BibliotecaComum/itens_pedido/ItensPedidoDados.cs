@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using BibliotecaComum.conexao;
 using System.Data.SqlClient;
 using System.Data;
-using BibliotecaComum.forma_pagamento;
 
 namespace BibliotecaComum.itens_pedido
 {
@@ -19,6 +18,9 @@ namespace BibliotecaComum.itens_pedido
             this.abrirConexao();
             string sql = "INSERT INTO itensPedido(idPedido,idProduto,quantidade,valorItens,descricaoIp) ";
             sql += "VALUES (@idPedido,@idProduto,@quantidade,@valorItens,@descricaoIp)";
+
+            //executando a instrução
+            cmd.ExecuteNonQuery();
 
             SqlCommand cmd = new SqlCommand(sql,this.sqlConnection);
 
@@ -36,9 +38,6 @@ namespace BibliotecaComum.itens_pedido
 
             cmd.Parameters.Add("@descricaoIp", SqlDbType.VarChar);
             cmd.Parameters["@descricaoIp"].Value = itensPedido.DescricaoIp;
-
-            //executando a instrução
-            cmd.ExecuteNonQuery();
 
             //liberando a memória 
             cmd.Dispose();
@@ -151,10 +150,10 @@ namespace BibliotecaComum.itens_pedido
             }
 
             //se foi passado uma descricao válida, esta descricao entrará como critério de filtro
-            //if (String.IsNullOrEmpty(filtro.IdProduto) && String.IsNullOrWhiteSpace(filtro.IdProduto))
-            //{
-            //    sql += " and descricao = @descricao";
-            //}    
+            if (String.IsNullOrEmpty(filtro.IdProduto) && String.IsNullOrWhiteSpace(filtro.IdProduto))
+            {
+                sql += " and descricao = @descricao";
+            }    
                                  
             //se foi passada uma ID de pedido válido, este ID entrará como critério de filtro
             if (filtro.IdPedido > 0)
@@ -185,11 +184,11 @@ namespace BibliotecaComum.itens_pedido
             }
 
             //se foi passado uma descrição válida, esta descrição entrará como critério de filtro
-            //if (String.IsNullOrEmpty(filtro.IdProduto) || String.IsNullOrWhiteSpace(filtro.IdProduto))
-            //{
-            //    cmd.Parameters.Add("@descricaoIp", SqlDbType.VarChar);
-            //    cmd.Parameters["@descricaoIp"].Value = filtro.DescricaoIp;
-            //}
+            if (String.IsNullOrEmpty(filtro.IdProduto) || String.IsNullOrWhiteSpace(filtro.IdProduto))
+            {
+                cmd.Parameters.Add("@descricaoIp", SqlDbType.VarChar);
+                cmd.Parameters["@descricaoIp"].Value = filtro.DescricaoIp;
+            }
 
             //executando a instrucao e colocando o resultado em um leitor
             SqlDataReader DbReader = cmd.ExecuteReader();
@@ -202,8 +201,8 @@ namespace BibliotecaComum.itens_pedido
                 itensPedido.IdPedido = DbReader.GetInt32(DbReader.GetOrdinal("id_pedido"));
                 itensPedido.IdPedido = DbReader.GetInt32(DbReader.GetOrdinal("id_produto"));
                 itensPedido.Quantidade = DbReader.GetInt32(DbReader.GetOrdinal("quantidade"));
-                itensPedido.ValorItens = DbReader.GetFloat(DbReader.GetOrdinal("valor_itens"));
-                //itensPedido.DescricaoIp = DbReader.GetString(DbReader.GetString("descricao"));
+                itensPedido.ValorItens = DbReader.GetFloat(DbReader.GetOrdinal("valorItens"));
+                itensPedido.DescricaoIp = DbReader.GetString(DbReader.GetString("descricaoIp"));
                 retorno.Add(itensPedido);                
             }
             //fechando o leitor de resultados

@@ -18,7 +18,7 @@ namespace BibliotecaComum.forma_pagamento
             this.abrirConexao();
             string sql = "INSERT INTO formaPagamento(id_formaPagamento,descricao_fp,tipo_fp) ";
             sql += "VALUES (@id_formaPagamento,@descricao_fp,@tipo_fp)";
-
+            
             //instrução a ser executada
             SqlCommand cmd = new SqlCommand(sql, this.sqlConnection);
 
@@ -120,7 +120,7 @@ namespace BibliotecaComum.forma_pagamento
 
             //se foi passada uma descrição válida, esta descrição entrará como critério de filtro
             if (!(String.IsNullOrEmpty(filtro.DescricaoFp) && String.IsNullOrWhiteSpace(filtro.DescricaoFp)))
-            { //
+            { 
                 sql += " and nome like @descricao_fp";
             }
 
