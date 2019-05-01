@@ -20,7 +20,7 @@ namespace BibliotecaComum.forma_pagamento
             sql += "VALUES (@id_formaPagamento,@descricao_fp,@tipo_fp)";
             
             //instrução a ser executada
-            SqlCommand cmd = new SqlCommand(sql,this.sqlConnection);
+            SqlCommand cmd = new SqlCommand(sql, this.sqlConnection);
 
             cmd.Parameters.Add("@id_formaPagamento", SqlDbType.Int);
             cmd.Parameters["@id_formaPagamento"].Value = formaPagamento.IdFormaPagamento;
@@ -71,7 +71,7 @@ namespace BibliotecaComum.forma_pagamento
             cmd.Dispose();
 
             //fechando a conexão
-            this.fecharConexao();                       
+            this.fecharConexao();
         }
         #endregion
 
@@ -88,7 +88,7 @@ namespace BibliotecaComum.forma_pagamento
 
             cmd.Parameters.Add("@id_formaPagamento", SqlDbType.Int);
             cmd.Parameters["@id_formaPagamento"].Value = formaPagamento.IdFormaPagamento;
-            
+
             //executando a instrução
             cmd.ExecuteNonQuery();
 
@@ -119,17 +119,17 @@ namespace BibliotecaComum.forma_pagamento
             }
 
             //se foi passada uma descrição válida, esta descrição entrará como critério de filtro
-            if (String.IsNullOrEmpty(filtro.DescricaoFp) && String.IsNullOrWhiteSpace(filtro.DescricaoFp))
-            {
+            if (!(String.IsNullOrEmpty(filtro.DescricaoFp) && String.IsNullOrWhiteSpace(filtro.DescricaoFp)))
+            { 
                 sql += " and nome like @descricao_fp";
             }
 
             //se foi passado um tipo válido, este tipo entrará como critério de filtro
-            if (String.IsNullOrEmpty(filtro.TipoFp) && String.IsNullOrWhiteSpace(filtro.TipoFp))
+            if (!(String.IsNullOrEmpty(filtro.TipoFp) && String.IsNullOrWhiteSpace(filtro.TipoFp)))
             {
                 sql += " and nome like @tipo_fp";
             }
-                                   
+
             //se foi passada uma matricula válida, esta matricula entrará como critério de filtro
             if (filtro.IdFormaPagamento > 0)
             {
@@ -138,19 +138,19 @@ namespace BibliotecaComum.forma_pagamento
             }
 
             //se foi passada uma descrição válida, esta descrição entrará como critério de filtro
-            if (String.IsNullOrEmpty(filtro.DescricaoFp) && String.IsNullOrWhiteSpace(filtro.DescricaoFp))
+            if (!(String.IsNullOrEmpty(filtro.DescricaoFp) && String.IsNullOrWhiteSpace(filtro.DescricaoFp)))
             {
                 cmd.Parameters.Add("@descricao_fp", SqlDbType.VarChar);
                 cmd.Parameters["@descricao_fp"].Value = "%" + filtro.DescricaoFp + "%";
             }
 
             //se foi passado um tipo válido, este tipo entrará como critério de filtro
-            if (String.IsNullOrEmpty(filtro.TipoFp) && String.IsNullOrWhiteSpace(filtro.TipoFp))
+            if (!(String.IsNullOrEmpty(filtro.TipoFp) && String.IsNullOrWhiteSpace(filtro.TipoFp)))
             {
                 cmd.Parameters.Add("@tipo_fp", SqlDbType.VarChar);
                 cmd.Parameters["@tipo_fp"].Value = "%" + filtro.TipoFp + "%";
             }
-                                                                             
+
             //executando a instrucao e colocando o resultado em um leitor
             SqlDataReader DbReader = cmd.ExecuteReader();
 
