@@ -1,13 +1,15 @@
 ﻿using System;
-using BibliotecaComum;
-using BibliotecaComum.forma_pagamento;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BibliotecaComum.pedido
 {
     public class Pedido
     {
         private int idPedido;
-        private string usuario;
+        private Usuario usuario;
         private DateTime dataPedido;
         private DateTime dataEntrega;
         private double valorPedido;

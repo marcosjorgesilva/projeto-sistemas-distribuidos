@@ -17,7 +17,7 @@ namespace BibliotecaComum.pedido
             }
             if(pedido.IdPedido <=0 )
             {
-                throw new Exception("id do pedido tem que ser maior que zero");
+                throw new Exception("Id inválido");
                
             }
             Pedido p = new Pedido();
@@ -40,7 +40,7 @@ namespace BibliotecaComum.pedido
             }
             if(pedido.IdPedido <= 0)
             {
-                throw new Exception("id invalido");
+                throw new Exception("Id invalido");
             }
             PedidoDados dados = new PedidoDados();
             Pedido p = new Pedido();
@@ -59,12 +59,9 @@ namespace BibliotecaComum.pedido
             return new PedidoDados().Select(filtro);
         }
         #endregion
+        #region Valida Update
         public void Update(Pedido pedido)
         {
-            if (pedido == null)
-            {
-                throw new Exception("");
-            }
             if (pedido.IdPedido <= 0)
             {
                 throw new Exception("id invalido");
@@ -79,6 +76,8 @@ namespace BibliotecaComum.pedido
             }
             dados.Update(pedido);
 
-        }    
+        }
+        #endregion
+
     }
-}
+}//falta validar datas(TextBox) e forma de pagamento(?), predefinir campo de datas e campo de fp só receber número (TextBox)

@@ -13,9 +13,14 @@ namespace BibliotecaComum.endereco
         public string Complemento { get; set; }
         public string Referencia { get; set; }
 
+        public string Cidade { get; set; }
+
+        public string Estado { get; set; }
+
+
         public Endereco() { }
 
-        public Endereco(Usuario usuario, string logradouro, int numero, string bairro, string cep, string complemento, string referencia)
+        public Endereco(Usuario usuario, string logradouro, int numero, string bairro, string cep, string complemento, string referencia, string cidade, string estado)
         {
             Usuario = usuario;
             Logradouro = logradouro;
@@ -24,6 +29,9 @@ namespace BibliotecaComum.endereco
             Cep = cep;
             Complemento = complemento;
             Referencia = referencia;
+            Cidade = cidade;
+            Estado = estado;
+           
         }
     }
 }
